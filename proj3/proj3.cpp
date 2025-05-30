@@ -3,26 +3,21 @@
 using namespace std;
 
 int main(){
-    float a;
-    float b;
-    float c;
-    float p;
-    float s;
+    int n;
+    int tram;
+    int chuc;
+    int donvi;
+    int sodaonguoc;
 
-    cout << "Nhap canh a: ";
-    cin >> a;
+    cout << "Nhap so n: ";
+    cin >> n;
 
-    cout << "Nhap canh b: ";
-    cin >> b;
+    tram = n / 100;
+    chuc = (n / 10) % 10;
+    donvi = n % 10;
+    sodaonguoc = donvi * 100 + chuc * 10  + tram *1;
 
-    cout << "Nhap canh c: ";
-    cin >> c;
     
-    p = (a + b + c) / 2;
+    cout << "So dao nguoc la: " << sodaonguoc ;
 
-    s = sqrt(p * (p - a) * (p - b) *(p - c));
-
-    cout << "Chu vi tam giac: " << p << "\n";
-    cout << "Dien tich tam giac: " << s;
-   
 }
