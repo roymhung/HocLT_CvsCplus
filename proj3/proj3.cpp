@@ -3,22 +3,26 @@
 using namespace std;
 
 int main(){
-    float x = 2;
-    float y = 3;
+    float a;
+    float b;
     float c;
+    float p;
     float s;
-    float r;
 
-    const float z = 3.14;
+    cout << "Nhap canh a: ";
+    cin >> a;
 
-    cout << "Nhap ban kinh: ";
-    cin >> r;
+    cout << "Nhap canh b: ";
+    cin >> b;
 
-    c = 2 * z * r;
+    cout << "Nhap canh c: ";
+    cin >> c;
+    
+    p = (a + b + c) / 2;
 
-    s = z * pow(r,2);
+    s = sqrt(p * (p - a) * (p - b) *(p - c));
 
-    cout << "Chu vi hinh tron: " << c << "\n";
-    cout << "Dien tich hinh tron: " << s;
+    cout << "Chu vi tam giac: " << p << "\n";
+    cout << "Dien tich tam giac: " << s;
    
 }
