@@ -1,23 +1,19 @@
-#include<iostream>
-#include<cmath>
+#include <iostream>
 using namespace std;
 
-int main(){
-    int n;
-    int tram;
-    int chuc;
-    int donvi;
-    int sodaonguoc;
+int main() {
+    char ch;
+    cout << "Nhap ki tu in thuong trong bang chu cai: ";
+    cin >> ch;
 
-    cout << "Nhap so n: ";
-    cin >> n;
+    cout << "1. Ma ASCII la: " << int(ch) << "\n";
 
-    tram = n / 100;
-    chuc = (n / 10) % 10;
-    donvi = n % 10;
-    sodaonguoc = donvi * 100 + chuc * 10  + tram *1;
+    char nextChar = ch + 1;
+    cout << "2. Ki tu dung sau la: " << nextChar << "\n";
+    cout << "Ma ASCII tuong ung la: " << int(nextChar) << "\n";
 
-    
-    cout << "So dao nguoc la: " << sodaonguoc ;
+    char upperChar = ch - 32; // hoặc dùng toupper(ch)
+    cout << "3. Ki tu in hoa tuong ung la: " << upperChar ;
 
+    return 0;
 }
