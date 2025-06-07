@@ -1,26 +1,49 @@
 #include <iostream>
-#include<cmath>
-
+#include <cmath>
 using namespace std;
 
+bool ganBang(double a, double b) {
+    return fabs(a - b) < 1.0; // kiểm tra xấp xỉ
+}
+
 int main() {
-    int n;
+    double a, b, c;
+    cout << "Nhap a: ";
+    cin >> a;
+    cout << "Nhap b: ";
+    cin >> b;
+    cout << "Nhap c: ";
+    cin >> c;
 
-    cout << "Nhap so n: ";
-    cin >> n;
-
-
-    if (n <= 0) {
-        cout << "Vui long nhap so nguyen duong! \n";
+    // Kiểm tra có phải là tam giác hợp lệ không
+    if (a + b <= c || a + c <= b || b + c <= a) {
+        cout << "Ket qua: Tam giac nay ko ton tai" << endl;
         return 0;
-    } 
-
-    int can = sqrt(n);
-
-    if (can * can == n) {
-        cout << "Ket qua: " << n << " la so chinh phuong\n";
-    }else{
-        cout << "Ket qua: " << n << " khong la so chinh phuong\n";
     }
+
+    bool can = (a == b || b == c || a == c);
+    bool deu = (a == b && b == c);
+
+    // Kiểm tra tam giác vuông (sử dụng xấp xỉ)
+    bool vuong = ganBang(a * a, b * b + c * c) ||
+                 ganBang(b * b, a * a + c * c) ||
+                 ganBang(c * c, a * a + b * b);
+
+    if (deu) {
+        cout << "Ket qua: Tam giac deu" << endl;
+    }
+    else if (vuong && can) {
+        cout << "Ket qua: Tam giac vuong can" << endl;
+    }
+    else if (vuong) {
+        cout << "Ket qua: Tam giac vuong" << endl;
+    }
+    else if (can) {
+        cout << "Ket qua: Tam giac can" << endl;
+    }
+    else {
+        cout << "Ket qua: Tam giac thuong" << endl;
+    }
+
     return 0;
 }
