@@ -2,20 +2,33 @@
 using namespace std;
 
 int main() {
-    int thang;
+    int gio, phut, giay;
 
-    cout << "Nhap thang: ";
-    cin >> thang;
-    if(thang >= 1 && thang <= 3){
-        cout << "Ket qua: Quy 1 \n";
-    }else if(thang >= 4 && thang <= 6){
-        cout << "Ket qua: Quy 2 \n";
-    }else if(thang >= 7 && thang <= 9){
-        cout << "Ket qua: Quy 3 \n";
-    }else if(thang >= 10 && thang <= 12){
-        cout << "Ket qua: Quy 4 \n";
-    }else{
-        cout << "Ket qua: Khong co thang " << thang << "\n";
+    cout << "Nhap gio: ";
+    cin >> gio;
+
+    cout << "Nhap phut: ";
+    cin >> phut;
+
+    cout << "Nhap giay: ";
+    cin >> giay;
+
+    if (gio >= 0 && gio <= 23 && phut >= 0 && phut <= 59 && giay >= 0 && giay <= 59) {
+        cout << "Ket qua: Hop le\n";
+    } else {
+        cout << "Ket qua: Khong hop le\n";
+
+        // Giải thích lý do không hợp lệ
+        if (gio < 0 || gio > 23) {
+            cout << "Do khong co gio " << gio << " nha ae :))\n";
+        }
+        if (phut < 0 || phut > 59) {
+            cout << "Do khong co phut " << phut << " nha ae :))\n";
+        }
+        if (giay < 0 || giay > 59) {
+            cout << "Do khong co giay " << giay << " nha ae :))\n";
+        }
     }
+
     return 0;
 }
