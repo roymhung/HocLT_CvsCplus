@@ -1,49 +1,45 @@
 #include <iostream>
-#include <cmath>
 using namespace std;
 
-bool ganBang(double a, double b) {
-    return fabs(a - b) < 1.0; // kiểm tra xấp xỉ
-}
-
 int main() {
-    double a, b, c;
-    cout << "Nhap a: ";
-    cin >> a;
-    cout << "Nhap b: ";
-    cin >> b;
-    cout << "Nhap c: ";
-    cin >> c;
+    int qty[6]; // số lượng các mặt hàng H1 -> H6
+    int price[6] = {100, 150, 120, 90, 130, 140}; // giá tiền các mặt hàng
+    int totalItems = 0;
+    int totalCost = 0;
 
-    // Kiểm tra có phải là tam giác hợp lệ không
-    if (a + b <= c || a + c <= b || b + c <= a) {
-        cout << "Ket qua: Tam giac nay ko ton tai" << endl;
-        return 0;
+    cout << "Nhap lan luot so luong 6 mat hang: ";
+    for (int i = 0; i < 6; i++) {
+        cin >> qty[i];
+        totalItems += qty[i];
+        totalCost += qty[i] * price[i];
     }
 
-    bool can = (a == b || b == c || a == c);
-    bool deu = (a == b && b == c);
+    bool has4Items = totalItems >= 4;
+    bool has2H6 = qty[5] >= 2;
+    bool over500k = totalCost > 500;
 
-    // Kiểm tra tam giác vuông (sử dụng xấp xỉ)
-    bool vuong = ganBang(a * a, b * b + c * c) ||
-                 ganBang(b * b, a * a + c * c) ||
-                 ganBang(c * c, a * a + b * b);
+    double finalCost = totalCost;
 
-    if (deu) {
-        cout << "Ket qua: Tam giac deu" << endl;
+    // Áp dụng khuyến mãi theo thứ tự ưu tiên
+    if (has4Items && has2H6 && over500k) {
+        finalCost = totalCost * 0.8; // giảm 20%
     }
-    else if (vuong && can) {
-        cout << "Ket qua: Tam giac vuong can" << endl;
+    else if ((has4Items && over500k) || (has2H6 && over500k)) {
+        finalCost = totalCost * 0.85; // giảm 15%
     }
-    else if (vuong) {
-        cout << "Ket qua: Tam giac vuong" << endl;
+    else if (has4Items && has2H6) {
+        finalCost = totalCost - 40;
     }
-    else if (can) {
-        cout << "Ket qua: Tam giac can" << endl;
+    else if (has4Items) {
+        finalCost = totalCost - 20;
     }
-    else {
-        cout << "Ket qua: Tam giac thuong" << endl;
+    else if (has2H6) {
+        finalCost = totalCost - 30;
+    }
+    else if (over500k) {
+        finalCost = totalCost * 0.9; // giảm 10%
     }
 
+    cout << "So tien phai tra: " << finalCost << endl;
     return 0;
 }
