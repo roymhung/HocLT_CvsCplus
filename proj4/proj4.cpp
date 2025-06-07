@@ -1,45 +1,62 @@
 #include <iostream>
+#include <string>
 using namespace std;
 
 int main() {
-    int qty[6]; // số lượng các mặt hàng H1 -> H6
-    int price[6] = {100, 150, 120, 90, 130, 140}; // giá tiền các mặt hàng
-    int totalItems = 0;
-    int totalCost = 0;
+    const int NUM_SUBJECTS = 7;
+    string subjects[NUM_SUBJECTS] = {"Toan", "Ly", "Hoa", "Van", "Anh", "Su", "Dia"};
+    float scores[NUM_SUBJECTS];
+    float total = 0;
+    bool invalid = false;
+    bool hasBelow4 = false;
+    bool hasBelow3 = false;
+    bool hasZero = false;
 
-    cout << "Nhap lan luot so luong 6 mat hang: ";
-    for (int i = 0; i < 6; i++) {
-        cin >> qty[i];
-        totalItems += qty[i];
-        totalCost += qty[i] * price[i];
-    }
+    // Nhập điểm từng môn
+    for (int i = 0; i < NUM_SUBJECTS; i++) {
+        cout << "Nhap diem " << subjects[i] << ": ";
+        cin >> scores[i];
+        
+        // Kiểm tra hợp lệ
+        if (scores[i] < 0 || scores[i] > 10) {
+            cout << "Diem " << subjects[i] << " khong hop le. Vui long nhap tu 0 den 10.\n";
+            invalid = true;
+        }
 
-    bool has4Items = totalItems >= 4;
-    bool has2H6 = qty[5] >= 2;
-    bool over500k = totalCost > 500;
+        // Kiểm tra điều kiện xếp loại
+        if (scores[i] < 4) hasBelow4 = true;
+        if (scores[i] < 3) hasBelow3 = true;
+        if (scores[i] == 0) hasZero = true;
 
-    double finalCost = totalCost;
-
-    // Áp dụng khuyến mãi theo thứ tự ưu tiên
-    if (has4Items && has2H6 && over500k) {
-        finalCost = totalCost * 0.8; // giảm 20%
-    }
-    else if ((has4Items && over500k) || (has2H6 && over500k)) {
-        finalCost = totalCost * 0.85; // giảm 15%
-    }
-    else if (has4Items && has2H6) {
-        finalCost = totalCost - 40;
-    }
-    else if (has4Items) {
-        finalCost = totalCost - 20;
-    }
-    else if (has2H6) {
-        finalCost = totalCost - 30;
-    }
-    else if (over500k) {
-        finalCost = totalCost * 0.9; // giảm 10%
+        total += scores[i];
     }
 
-    cout << "So tien phai tra: " << finalCost << endl;
+    if (invalid) {
+        cout << "Khong the tinh diem tong ket vi co diem khong hop le.\n";
+        return 0;
+    }
+
+    float avg = total / NUM_SUBJECTS;
+    cout << "Diem trung binh: " << avg << endl;
+
+    // Xếp loại
+    string classification;
+    if (avg > 8.0 && !hasBelow4) {
+        classification = "Hoc sinh gioi";
+    } else if (avg > 8.0 && hasBelow4) {
+        classification = "Hoc sinh kha";
+    } else if (avg >= 6.5 && avg <= 8.0 && !hasBelow3) {
+        classification = "Hoc sinh kha";
+    } else if (avg >= 6.5 && hasBelow3) {
+        classification = "Hoc sinh trung binh";
+    } else if (avg >= 4.0 && avg < 6.5 && !hasZero) {
+        classification = "Hoc sinh trung binh";
+    } else if (avg >= 4.0 && hasZero) {
+        classification = "Hoc sinh yeu";
+    } else {
+        classification = "Hoc sinh yeu";
+    }
+
+    cout << "Xep loai: " << classification << endl;
     return 0;
 }
