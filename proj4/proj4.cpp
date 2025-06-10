@@ -3,30 +3,50 @@ using namespace std;
 
 int main() {
     int n;
-
-    // Nhập số lượng phần tử của mảng
-    cout << "Nhap so luong phan tu cua mang: ";
+    cout << "Nhap n: ";
     cin >> n;
 
-    // Cấp phát động mảng
-    int* arr = new int[n];
-
-    // Nhập các phần tử của mảng
-    cout << "Nhap " << n << " phan tu:\n";
-    for (int i = 0; i < n; ++i) {
-        cout << "Phan tu thu " << i << ": ";
-        cin >> arr[i];
+    // Kiểm tra n có phải số nguyên dương
+    if (n <= 0) {
+        cout << "Vui long nhap so nguyen duong!" << endl;
+        return 1;
     }
 
-    // In các phần tử của mảng
-    cout << "Cac phan tu vua nhap la:\n";
-    for (int i = 0; i < n; ++i) {
-        cout << arr[i] << " ";
+    // In các số chẵn từ 1 đến n
+    cout << "Ket qua 1: ";
+    for (int i = 1; i <= n; i++) {
+        if (i % 2 == 0) {
+            cout << i << " ";
+        }
     }
     cout << endl;
 
-    // Giải phóng bộ nhớ
-    delete[] arr;
+    // In các số từ 1 đến n chia hết cho 3
+    cout << "Ket qua 2: ";
+    for (int i = 1; i <= n; i++) {
+        if (i % 3 == 0) {
+            cout << i << " ";
+        }
+    }
+    cout << endl;
+
+    // In các số lẻ từ 1 đến n chia hết cho 3
+    cout << "Ket qua 3: ";
+    for (int i = 1; i <= n; i++) {
+        if (i % 2 != 0 && i % 3 == 0) {
+            cout << i << " ";
+        }
+    }
+    cout << endl;
+
+    // In các số từ -n đến n chia hết cho 5
+    cout << "Ket qua 4: ";
+    for (int i = -n; i <= n; i++) {
+        if (i % 5 == 0) {
+            cout << i << " ";
+        }
+    }
+    cout << endl;
 
     return 0;
 }
