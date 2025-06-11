@@ -2,19 +2,50 @@
 using namespace std;
 
 int main() {
-    int N = 8;
+    int n;
+    // Input positive integer n
+    cout << "Nhap n: ";
+    cin >> n;
 
-    for (int i = 1; i <= N; i++) {
-        for (int j = 1; j <= i; j++) {
-            if (j == 1 || j == i || i == N) {
-                cout << "* ";
-            }
-            else {
-                cout << "  ";
-            }
-        }
-        cout << "\n";
+    // Validate input
+    if(n <= 0){
+        cout << "Vui long nhap so nguyen duong!";
+        return 1;
     }
 
+    // Print even numbers from 1 to n
+    cout << "Ket qua 1: ";
+    for(int i = 1; i <= n; i++){
+        if(i%2 == 0){
+            cout << i << " ";
+        }
+    }
+    cout << "\n";
+
+    // Print numbers divisible by 3 from 1 to n
+    cout << "Ket qua 2: ";
+    for(int i = 1; i <= n; i++){
+        if(i%3 == 0){
+            cout << i << " ";
+        }
+    }
+    cout << "\n";
+
+    // Print odd numbers divisible by 3 from 1 to n
+    cout << "Ket qua 3: ";
+    for(int i = 1; i <= n; i++){
+        if(i%2!= 0 && i%3 == 0){
+            cout << i << " ";
+        }
+    }
+    cout << "\n";
+
+     // Print numbers divisible by 5 from 1 to n
+    cout << "Ket qua 4: ";
+    for(int i = -n; i <= n; i++){
+        if(i%5 == 0){
+            cout << i << " ";
+        }
+    }
     return 0;
 }
