@@ -2,18 +2,19 @@
 using namespace std;
 
 int main() {
-    // for(int i = 10; i > 0; i--){
-    //     cout << "anh yeu em " << i << "\n";
-    // }    
+    int N = 8;
 
-    int i = 0;
-    bool duy_tri = true;
-    while(duy_tri){
-        cout << "anh yeu em " << i << "\n";
-        if(i == 10){
-            duy_tri = false;
+    for (int i = 1; i <= N; i++) {
+        for (int j = 1; j <= i; j++) {
+            if (j == 1 || j == i || i == N) {
+                cout << "* ";
+            }
+            else {
+                cout << "  ";
+            }
         }
-        i++;
+        cout << "\n";
     }
+
     return 0;
 }
