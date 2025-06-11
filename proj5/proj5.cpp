@@ -40,7 +40,7 @@ int main() {
     }
     cout << "\n";
 
-     // Print numbers divisible by 5 from 1 to n
+     // Print numbers divisible by 5 from -n to n
     cout << "Ket qua 4: ";
     for(int i = -n; i <= n; i++){
         if(i%5 == 0){
