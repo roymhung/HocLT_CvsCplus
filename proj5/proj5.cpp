@@ -7,8 +7,12 @@ int main() {
     // }    
 
     int i = 0;
-    while(i <= 10){
+    bool duy_tri = true;
+    while(duy_tri){
         cout << "anh yeu em " << i << "\n";
+        if(i == 10){
+            duy_tri = false;
+        }
         i++;
     }
     return 0;
