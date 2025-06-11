@@ -2,9 +2,8 @@
 using namespace std;
 
 int main() {
-    for(int i = 0; i < 10; i++){
-        cout << "anh yeu em" << "\n";
-
+    for(int i = 10; i > 0; i--){
+        cout << "anh yeu em" << i << "\n";
     }    
 
     return 0;
