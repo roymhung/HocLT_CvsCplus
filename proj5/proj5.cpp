@@ -3,47 +3,35 @@ using namespace std;
 
 int main() {
     int n;
-    cout << "Nhap n: ";
-    cin >> n;
-
-    // Kiểm tra n có phải số nguyên dương không
-    if (n <= 0) {
-        cout << "Vui long nhap so nguyen duong!" << endl;
-        return 0;
-    }
-
-    // 1. In ra các ước số của n từ 1 đến n
-    cout << "Ket qua 1: ";
     int count = 0;
+    
+    // Nhập số nguyên dương n
+    do {
+        cout << "Nhap n: ";
+        cin >> n;
+    } while (n <= 0);
+    
+    // Câu 1: In ra các số mà n chia hết từ 1 đến n
+    cout << "Ket qua 1: ";
     for (int i = 1; i <= n; i++) {
         if (n % i == 0) {
             cout << i << " ";
-            count++;
+            count++; // Đếm số lượng ước
         }
     }
     cout << endl;
-
-    // 2. In ra số lượng ước
+    
+    // Câu 2: In ra số lượng ước
     cout << "Ket qua 2: " << count << endl;
-
-    // 3. Kiểm tra số nguyên tố
-    bool isPrime = true;
-    if (n <= 1) {
-        isPrime = false;
+    
+    // Câu 3: Kiểm tra số nguyên tố
+    if (n == 1) {
+        cout << "Ket qua 3: Ko phai so nguyen to" << endl;
+    } else if (count == 2) {
+        cout << "Ket qua 3: La so nguyen to" << endl;
     } else {
-        for (int i = 2; i * i <= n; i++) {
-            if (n % i == 0) {
-                isPrime = false;
-                break;
-            }
-        }
+        cout << "Ket qua 3: Ko phai so nguyen to" << endl;
     }
-
-    cout << "Ket qua 3: ";
-    if (isPrime)
-        cout << "La so nguyen to" << endl;
-    else
-        cout << "Ko phai so nguyen to" << endl;
-
+    
     return 0;
 }
