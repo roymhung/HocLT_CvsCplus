@@ -1,39 +1,42 @@
 #include <iostream>
 using namespace std;
 
-// Hàm tính UCLN bằng thuật toán Euclid
-int ucln(int a, int b) {
+// Hàm tìm UCLN bằng thuật toán Euclid
+int gcd(int a, int b) {
     while (b != 0) {
-        int r = a % b;
-        a = b;
-        b = r;
+        int temp = b;
+        b = a % b;
+        a = temp;
     }
     return a;
 }
 
-// Hàm tính BCNN từ UCLN
-int bcnn(int a, int b) {
-    return (a * b) / ucln(a, b);
+// Hàm tìm BCNN
+int lcm(int a, int b) {
+    return (a * b) / gcd(a, b);
 }
 
 int main() {
     int a, b;
-    cout << "Nhap a: ";
-    cin >> a;
-    cout << "Nhap b: ";
-    cin >> b;
-
-    // Kiểm tra số hợp lệ
-    if (a <= 0 || b <= 0) {
-        cout << "Vui long nhap hai so nguyen duong!" << endl;
-        return 0;
-    }
-
-    int u = ucln(a, b);
-    int bcn = bcnn(a, b);
-
-    cout << "Uoc chung lon nhat la: " << u << endl;
-    cout << "Boi chung nho nhat la: " << bcn << endl;
-
+    
+    // Nhập hai số nguyên dương a và b
+    do {
+        cout << "Nhap a: ";
+        cin >> a;
+    } while (a <= 0);
+    
+    do {
+        cout << "Nhap b: ";
+        cin >> b;
+    } while (b <= 0);
+    
+    // Tính và in UCLN
+    int ucln = gcd(a, b);
+    cout << "Uoc chung lon nhat la: " << ucln << endl;
+    
+    // Tính và in BCNN
+    int bcnn = lcm(a, b);
+    cout << "Boi chung nho nhat la: " << bcnn << endl;
+    
     return 0;
 }
