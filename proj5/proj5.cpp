@@ -3,49 +3,47 @@ using namespace std;
 
 int main() {
     int n;
-    // Input positive integer n
     cout << "Nhap n: ";
     cin >> n;
 
-    // Validate input
-    if(n <= 0){
-        cout << "Vui long nhap so nguyen duong!";
-        return 1;
+    // Kiểm tra n có phải số nguyên dương không
+    if (n <= 0) {
+        cout << "Vui long nhap so nguyen duong!" << endl;
+        return 0;
     }
 
-    // Print even numbers from 1 to n
+    // 1. In ra các ước số của n từ 1 đến n
     cout << "Ket qua 1: ";
-    for(int i = 1; i <= n; i++){
-        if(i%2 == 0){
+    int count = 0;
+    for (int i = 1; i <= n; i++) {
+        if (n % i == 0) {
             cout << i << " ";
+            count++;
         }
     }
-    cout << "\n";
+    cout << endl;
 
-    // Print numbers divisible by 3 from 1 to n
-    cout << "Ket qua 2: ";
-    for(int i = 1; i <= n; i++){
-        if(i%3 == 0){
-            cout << i << " ";
+    // 2. In ra số lượng ước
+    cout << "Ket qua 2: " << count << endl;
+
+    // 3. Kiểm tra số nguyên tố
+    bool isPrime = true;
+    if (n <= 1) {
+        isPrime = false;
+    } else {
+        for (int i = 2; i * i <= n; i++) {
+            if (n % i == 0) {
+                isPrime = false;
+                break;
+            }
         }
     }
-    cout << "\n";
 
-    // Print odd numbers divisible by 3 from 1 to n
     cout << "Ket qua 3: ";
-    for(int i = 1; i <= n; i++){
-        if(i%2!= 0 && i%3 == 0){
-            cout << i << " ";
-        }
-    }
-    cout << "\n";
+    if (isPrime)
+        cout << "La so nguyen to" << endl;
+    else
+        cout << "Ko phai so nguyen to" << endl;
 
-     // Print numbers divisible by 5 from -n to n
-    cout << "Ket qua 4: ";
-    for(int i = -n; i <= n; i++){
-        if(i%5 == 0){
-            cout << i << " ";
-        }
-    }
     return 0;
 }
