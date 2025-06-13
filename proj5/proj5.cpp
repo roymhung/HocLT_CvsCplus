@@ -1,27 +1,25 @@
 #include <iostream>
-#include <cmath>
 using namespace std;
+
+// Định nghĩa hàm f(x)
+int f(int x) {
+    if (x >= 5)
+        return 2 * x * x + 5 * x + 9;
+    else
+        return -2 * x * x + 4 * x - 9;
+}
 
 int main() {
     int n;
     cout << "Nhap n: ";
     cin >> n;
-    int tempSum;
-    int sum = 0;
-    int x = 0;
 
+    int tong = 0;
     for (int i = 1; i <= n; i++) {
-        if (i >= 5) {
-            tempSum = 2 * i * i + 5 * i + 9;
-        }
-        else {
-            tempSum = -2 * i * i + 4 * i - 9;
-        }
-        sum += tempSum;
-        cout << "tempSum nho nhat la: " << tempSum << "\n";
+        tong += f(i);
     }
 
-    
-    cout << "sum nho nhat la: " << sum;
+    cout << "Ket qua: " << tong << endl;
+
     return 0;
 }
