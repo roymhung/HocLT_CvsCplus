@@ -1,25 +1,13 @@
 #include <iostream>
+#include <iomanip>
 using namespace std;
 
-// Định nghĩa hàm f(x)
-int f(int x) {
-    if (x >= 5)
-        return 2 * x * x + 5 * x + 9;
-    else
-        return -2 * x * x + 4 * x - 9;
-}
-
 int main() {
-    int n;
-    cout << "Nhap n: ";
-    cin >> n;
-
-    int tong = 0;
-    for (int i = 1; i <= n; i++) {
-        tong += f(i);
+    for (int i = 1; i <= 10; i++) {          // Dòng: từ 1 đến 10
+        for (int j = 1; j <= 10; j++) {      // Cột: từ 1 đến 10
+            cout << setw(6) << j << "x" << i << "=" << j * i;
+        }
+        cout << endl;
     }
-
-    cout << "Ket qua: " << tong << endl;
-
     return 0;
 }
