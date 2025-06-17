@@ -1,83 +1,79 @@
 #include <iostream>
+#include <cmath>
 using namespace std;
 
-// Function to check if a number is prime
+// Hàm kiểm tra số nguyên tố
 bool isPrime(int n) {
     if (n < 2) return false;
-    for (int i = 2; i * i <= n; i++) {
+    for (int i = 2; i <= sqrt(n); i++)
         if (n % i == 0) return false;
-    }
     return true;
 }
 
 int main() {
-    int M, N;
-    cout << "Nhap so hang M: ";
-    cin >> M;
-    cout << "Nhap so cot N: ";
-    cin >> N;
-    
-    // Input 2D array
-    int A[100][100];
-    cout << "Nhap ma tran " << M << "x" << N << ":\n";
-    for (int i = 0; i < M; i++) {
-        for (int j = 0; j < N; j++) {
-            cin >> A[i][j];
-        }
-    }
-    
-    // Calculate sum of all elements
-    int sum = 0;
-    for (int i = 0; i < M; i++) {
-        for (int j = 0; j < N; j++) {
-            sum += A[i][j];
-        }
-    }
-    cout << "Ket qua 1: " << sum << endl;
-    
-    // Find maximum element
+    const int M = 4;
+    const int N = 3;
+    int A[M][N] = {
+        {8, 12, 9},
+        {4, 10, 13},
+        {15, 8, 20},
+        {12, 11, 10}
+    };
+
+    int tong = 0;
     int maxVal = A[0][0];
-    for (int i = 0; i < M; i++) {
-        for (int j = 0; j < N; j++) {
-            if (A[i][j] > maxVal) {
-                maxVal = A[i][j];
-            }
-        }
-    }
-    cout << "Ket qua 2: " << maxVal << endl;
-    
-    // Find row with maximum sum (assuming subarray is a row of 3 elements)
-    int maxRowSum = 0;
-    int maxRow = 0;
-    for (int i = 0; i < M; i++) {
-        int rowSum = 0;
-        for (int j = 0; j < N; j++) {
-            rowSum += A[i][j];
-        }
-        if (rowSum > maxRowSum) {
-            maxRowSum = rowSum;
-            maxRow = i;
-        }
-    }
-    cout << "Ket qua 3: ";
-    for (int j = 0; j < N; j++) {
-        cout << A[maxRow][j] << " ";
-    }
-    cout << endl;
-    
-    // Find first prime number
+    int maxSum = -1e9;
+    int resRow = -1, resCol = -1;
     bool foundPrime = false;
-    for (int i = 0; i < M && !foundPrime; i++) {
-        for (int j = 0; j < N && !foundPrime; j++) {
-            if (isPrime(A[i][j])) {
-                cout << "Ket qua 4: " << A[i][j] << endl;
+    int firstPrime = -1;
+
+    for (int i = 0; i < M; i++) {
+        for (int j = 0; j < N; j++) {
+            int val = A[i][j];
+
+            // Tổng
+            tong += val;
+
+            // Max
+            if (val > maxVal) maxVal = val;
+
+            // Tìm số nguyên tố đầu tiên
+            if (!foundPrime && isPrime(val)) {
+                firstPrime = val;
                 foundPrime = true;
             }
         }
     }
-    if (!foundPrime) {
-        cout << "Ket qua 4: Ko ton tai so nguyen to trog mang" << endl;
+
+    // Tìm bộ 3 phần tử liên tiếp theo hàng có tổng lớn nhất
+    for (int i = 0; i < M; i++) {
+        for (int j = 0; j <= N - 3; j++) {
+            int sum = A[i][j] + A[i][j + 1] + A[i][j + 2];
+            if (sum > maxSum) {
+                maxSum = sum;
+                resRow = i;
+                resCol = j;
+            }
+        }
     }
-    
+
+    // Kết quả
+    cout << "Ket qua 1: " << tong << endl;
+    cout << "Ket qua 2: " << maxVal << endl;
+
+    if (resRow != -1) {
+        cout << "Ket qua 3: ";
+        cout << A[resRow][resCol] << " "
+             << A[resRow][resCol + 1] << " "
+             << A[resRow][resCol + 2] << endl;
+    } else {
+        cout << "Ket qua 3: Khong co bo 3 lien tiep nao." << endl;
+    }
+
+    if (foundPrime)
+        cout << "Ket qua 4: " << firstPrime << endl;
+    else
+        cout << "Ket qua 4: Ko ton tai so nguyen to trog mang" << endl;
+
     return 0;
 }
